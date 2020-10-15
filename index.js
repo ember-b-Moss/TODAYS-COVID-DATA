@@ -31,12 +31,34 @@ function renderData(data) {
   if (covidData) {
   const covidDataHtml = `
     <h1>${covidData.country}</h1>
-    <p>New cases: ${covidData.cases.new}</p>
-    <p>Active cases: ${covidData.cases.active}</p>
-    <p>Critical cases: ${covidData.cases.critical}</p>
-    <p>Recovered cases: ${covidData.cases.recovered}</p>
-    <p>New deaths: ${covidData.deaths.new}</p>
-    <p>Total deaths: ${covidData.deaths.total}</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>New cases</td>
+          <td>${covidData.cases.new}</td>
+        </tr>
+        <tr>
+          <td>Active cases</td>
+          <td>${covidData.cases.active}</td>
+        </tr>
+        <tr>
+          <td>Critical cases</td>
+          <td>${covidData.cases.critical}</td>
+        </tr>
+        <tr>
+          <td>Recovered cases</td>
+          <td>${covidData.cases.recovered}</td>
+        </tr>
+        <tr>
+          <td>New deaths</td>
+          <td>${covidData.deaths.new}</td>
+        </tr>
+        <tr>
+          <td>Total deaths</td>
+          <td>${covidData.deaths.total}</td>
+        </tr>
+      </tbody>
+    </table>
   `;
   document.querySelector("#covid-data").innerHTML = covidDataHtml;
  
