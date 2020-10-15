@@ -20,7 +20,8 @@ btn.addEventListener("click", async() => {
 
 function resetView() {
   document.querySelector("#main").innerHTML = `
-    <div id="covid-data"></div>
+    <div id="covid-data" class="visible"></div>
+    <div id="country-map" class="map"></div>
   `;
 }
 function renderData(data) {
@@ -28,9 +29,8 @@ function renderData(data) {
   resetView();
   const covidData = data.response[0];
   if (covidData) {
-  const countryName = covidData.country ?? "Wrong country name";
   const covidDataHtml = `
-    <h1>${countryName}</h1>
+    <h1>${covidData.country}</h1>
     <p>New cases: ${covidData.cases.new}</p>
     <p>Active cases: ${covidData.cases.active}</p>
     <p>Critical cases: ${covidData.cases.critical}</p>
@@ -38,7 +38,14 @@ function renderData(data) {
     <p>New deaths: ${covidData.deaths.new}</p>
     <p>Total deaths: ${covidData.deaths.total}</p>
   `;
-  document.querySelector("#main").innerHTML = covidDataHtml;
+  document.querySelector("#covid-data").innerHTML = covidDataHtml;
+ 
+  const countryHtml = `
+    <div style="width: 100%">
+      <iframe width="500" height="300" src="https://maps.google.com/maps?q=${covidData.country}&t=&z=4&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    </div>
+  `
+  document.querySelector("#country-map").innerHTML = countryHtml;
 }else {
   const errorHtml = `
     <h1>Wrong country name</h1>
@@ -47,13 +54,7 @@ function renderData(data) {
 }
 
  
-  /* //a map showing where the city is located
-  const mainDiv = document.getElementById("main");
-  const mapDiv = document.createElement("div");
-  mapDiv.classList.add = "map";
-  mainDiv.appendChild(mapDiv);
-  mapDiv.innerHTML = `<div style="width: 100%"><iframe width="500" height="300" src="https://maps.google.com/maps?q=${data.name}&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>`;
-   */
+  
 }
 
 async function getTodaysCovidData(country) {
