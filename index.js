@@ -1,6 +1,6 @@
-let url = "";
-const input = document.getElementById("city");
-const btn = document.getElementById("btn-city");
+
+const input = document.getElementById("country");
+const btn = document.getElementById("btn-country");
 
 function fetchData(url) {
   document.getElementById("covid-data").innerHTML = "Loading data";
@@ -9,81 +9,57 @@ function fetchData(url) {
   });
 }
 
-btn.addEventListener("click", () => {
+btn.addEventListener("click", async() => {
   if (input.value) {
-    const valueCity = input.value.toLowerCase();
-    url =
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-      valueCity +
-      "&appid=9ebe0b81616081651a65b03e4c5c4088";
-    fetchData(url).then((data) => renderData(data));
+    const valueCountry = input.value.toLowerCase();
+    const covidData = await getTodaysCovidData(valueCountry)
+    renderData(covidData);
   }
 });
 
 
 function resetView() {
-  const resultsDiv = document.querySelector("#main");
-  resultsDiv.innerHTML = "";
-  const div = document.createElement("div");
-  div.id = "covid-data";
-  resultsDiv.appendChild(div);
+  document.querySelector("#main").innerHTML = `
+    <div id="covid-data"></div>
+  `;
 }
- 
 function renderData(data) {
+  console.log(data);
   resetView();
+  const covidData = data.response[0];
+  if (covidData) {
+  const countryName = covidData.country ?? "Wrong country name";
+  const covidDataHtml = `
+    <h1>${countryName}</h1>
+    <p>New cases: ${covidData.cases.new}</p>
+    <p>Active cases: ${covidData.cases.active}</p>
+    <p>Critical cases: ${covidData.cases.critical}</p>
+    <p>Recovered cases: ${covidData.cases.recovered}</p>
+    <p>New deaths: ${covidData.deaths.new}</p>
+    <p>Total deaths: ${covidData.deaths.total}</p>
+  `;
+  document.querySelector("#main").innerHTML = covidDataHtml;
+}else {
+  const errorHtml = `
+    <h1>Wrong country name</h1>
+  `;
+  document.querySelector("#main").innerHTML = errorHtml;
+}
 
-  const div = document.getElementById("covid-data");
-  div.className = "visible";
-
-  //The chosen city
-  const cityName = document.createElement("h1");
-  div.appendChild(cityName);
-
-  if (data.name === undefined) cityName.innerHTML = "Wrong city name";
-  else cityName.innerHTML = data.name;
-
-  //new cases
-  const pNewCases = document.createElement("p");
-  div.appendChild(pNewCases);
-  pNewCases.innerHTML = `New cases: ${data.response.cases.new}`;
-
-  //active cases
-  const pActivecases = document.createElement("p");
-  div.appendChild(pActivecases);
-  pActivecases.innerHTML = `Active cases: ${data.response.cases.active}`;
-
-  //critical
-  const pCriticalCases = document.createElement("p");
-  div.appendChild(pCriticalCases);
-  pCriticalCases.innerHTML = `Critical cases: ${data.response.cases.critical}`;
-
-  //recovered
-  const pRecoveredCases = document.createElement("p");
-  div.appendChild(pRecoveredCases);
-  pRecoveredCases.innerHTML = `Recovered cases: ${data.response.cases.recovered}`;
-
-  //new deaths
-  const pNewDeaths = document.createElement("p");
-  div.appendChild(pNewDeaths);
-  pNewDeaths.innerHTML = `New deaths: ${data.response.deaths.new}`;
-
-  //total deaths
-  const pTotalDeaths = document.createElement("p");
-  div.appendChild(pTotalDeaths);
-  pTotalDeaths.innerHTML = `Total deaths: ${data.response.deaths.total}`;
  
-  //a map showing where the city is located
+  /* //a map showing where the city is located
   const mainDiv = document.getElementById("main");
   const mapDiv = document.createElement("div");
   mapDiv.classList.add = "map";
   mainDiv.appendChild(mapDiv);
   mapDiv.innerHTML = `<div style="width: 100%"><iframe width="500" height="300" src="https://maps.google.com/maps?q=${data.name}&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>`;
+   */
 }
 
-async function getTodaysCovidDataAwait() {
+async function getTodaysCovidData(country) {
     try {
       const response = await fetch(
-        "https://covid-193.p.rapidapi.com/statistics?country=Denmark",
+        `https://covid-193.p.rapidapi.com/statistics?country=${country}`,
         {
           method: "GET",
           headers: {
@@ -94,18 +70,14 @@ async function getTodaysCovidDataAwait() {
         }
       );
       const covidData = await response.json();
-      console.log("respondedWithAwait", covidData);
+      //console.log("respondedWithAwait", covidData);
       return covidData;
     } catch (err) {
       console.log(err);
     }
   }
   
-  function timedData() {
-    setTimeout(() => {
-      
-      getTodaysCovidDataAwait();
-    }, 3000);
-  }
-  timedData();
+ 
+
+    
   
