@@ -39,10 +39,33 @@
   h1,h3 {
     color: #333;
     font-family: "Pacifico", cursive;
-    
   }
 
- 
+  h1 {
+    line-height: 100%;
+    margin-top: 10px;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  .dataTable {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .dataTable th {
+    font-weight: normal;
+  }
+
+  .dataTable th, .dataTable td {
+    padding: 10px;
+  }
+
+  .dataTable td {
+    font-size: 1.25em;
+  }
   
   #covid-data.visible {
     background: rgba(206, 217, 237, 0.4);

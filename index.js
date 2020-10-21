@@ -32,34 +32,34 @@ function renderData(data) {
   const covidDataHtml = `
     <h1>${covidData.country}</h1>
     <h3>${covidData.day}</h3>
-    <table>
+    <table class="dataTable">
       <tbody>
         <tr>
-          <td>New cases</td>
+          <th>New cases</th>
           <td>${covidData.cases.new}</td>
         </tr>
         <tr>
-          <td>New deaths</td>
+          <th>New deaths</th>
           <td>${covidData.deaths.new}</td>
         </tr>
         <tr>
-          <td>Total deaths</td>
-          <td>${covidData.deaths.total}</td>
+          <th>Critical cases</th>
+          <td>${covidData.cases.critical}</td>
         </tr>
         <tr>
-         <td>Critical cases</td>
-         <td>${covidData.cases.critical}</td>
-        </tr>
-        <tr>
-          <td>Active cases</td>
+          <th>Active cases</th>
           <td>${covidData.cases.active}</td>
         </tr>
         <tr>
-          <td>Recovered cases</td>
+          <th>Recovered cases</th>
           <td>${covidData.cases.recovered}</td>
         </tr>
         <tr>
-          <td>Population</td>
+          <th>Total deaths</th>
+          <td>${covidData.deaths.total}</td>
+        </tr>
+        <tr>
+          <th>Population</th>
           <td>${covidData.population}</td>
         </tr>
       </tbody>
@@ -80,8 +80,6 @@ function renderData(data) {
   document.querySelector("#main").innerHTML = errorHtml;
 }
 
- 
-  
 }
 
 async function getTodaysCovidData(country) {
@@ -104,8 +102,7 @@ async function getTodaysCovidData(country) {
       console.log(err);
     }
   }
-  
+
  
 
     
-  
