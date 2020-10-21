@@ -31,23 +31,12 @@ function renderData(data) {
   if (covidData) {
   const covidDataHtml = `
     <h1>${covidData.country}</h1>
+    <h3>${covidData.day}</h3>
     <table>
       <tbody>
         <tr>
           <td>New cases</td>
           <td>${covidData.cases.new}</td>
-        </tr>
-        <tr>
-          <td>Active cases</td>
-          <td>${covidData.cases.active}</td>
-        </tr>
-        <tr>
-          <td>Critical cases</td>
-          <td>${covidData.cases.critical}</td>
-        </tr>
-        <tr>
-          <td>Recovered cases</td>
-          <td>${covidData.cases.recovered}</td>
         </tr>
         <tr>
           <td>New deaths</td>
@@ -56,6 +45,22 @@ function renderData(data) {
         <tr>
           <td>Total deaths</td>
           <td>${covidData.deaths.total}</td>
+        </tr>
+        <tr>
+         <td>Critical cases</td>
+         <td>${covidData.cases.critical}</td>
+        </tr>
+        <tr>
+          <td>Active cases</td>
+          <td>${covidData.cases.active}</td>
+        </tr>
+        <tr>
+          <td>Recovered cases</td>
+          <td>${covidData.cases.recovered}</td>
+        </tr>
+        <tr>
+          <td>Population</td>
+          <td>${covidData.population}</td>
         </tr>
       </tbody>
     </table>
