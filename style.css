@@ -85,4 +85,38 @@
     font-size: 1.2em;
     font-weight: 600;
   }
+  .legend {
+    position: absolute;
+    transform: translateX(300px);
+    background: rgb(230, 232, 234, 80%);
+    border-radius: 10px;
+    box-shadow: 1px 1px 12px rgba(206, 217, 237, 0.9);
+    padding: 10px;
+    }
   
+  .colorTable .color-box{
+    width: 1em;
+    height: 1em;
+    margin-right: 0.2em;
+  }
+  .colorTable td {
+    text-align: left;
+  }
+  .colorTable {
+    font-size: 0.8em;
+  }
+
+  @media (max-width: 536px) {
+    .legend {
+      transform: none;
+      top: 100%;
+      margin-top: 10px;
+      width: 100%;
+      left: 0;
+      }
+
+    #covid-data.visible {
+      position: relative;
+      margin-bottom: 140px;
+      }
+  }

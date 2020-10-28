@@ -1,6 +1,13 @@
 
 const input = document.getElementById("country");
 const btn = document.getElementById("btn-country");
+const colors = [
+  {code:'#007516', label:'very low'},
+  {code:'#0b5db3', label:'low'}, 
+  {code:'#8c5340', label:'medium'},
+  {code:'#ad05a7', label:'high'},
+  {code:'#a50000', label:'very high'} 
+]
 
 const getCountryColor = ({newInfections, population}) => {
   const infectionRate = newInfections * 1000000 / population
@@ -11,18 +18,18 @@ const getCountryColor = ({newInfections, population}) => {
     // Red 215-286
     // Dark red 287+
   if (infectionRate <= 71) {
-    return '#007516';
+    return colors[0].code;
   }
   if (infectionRate <= 143) {
-    return '#6d5607';
+    return colors[1].code;
   }
   if (infectionRate <= 214) {
-    return '#8c5340';
+    return colors[2].code;
   }
   if (infectionRate <= 286) {
-    return '#b72e2e';
+    return colors[3].code;
   }
-  return '#a50000';
+  return colors[4].code;
 }
 
 function fetchData(url) {
@@ -59,6 +66,15 @@ function renderData(data) {
     const covidDataHtml = `
       <h1>${covidData.country}</h1>
       <h3>${covidData.day}</h3>
+      <div class="legend">
+        <table class="colorTable">
+          <tbody>
+
+          ${displayLegendTableRows()}
+
+          </tbody>
+        </table>
+      </div>
       <table class="dataTable">
         <tbody>
           <tr>
@@ -130,5 +146,14 @@ async function getTodaysCovidData(country) {
   }
 
  
+function displayLegendTableRows() {
+  
+return colors.map(color => ` 
+  <tr>
+    <th><div style="background: ${color.code};" class="color-box"></div></th>
+    <td>${color.label}</td>
+  </tr>
+`).join('');
 
+}  
     
