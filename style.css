@@ -95,7 +95,7 @@ h3 {
   padding: 10px;
 }
 
-.colorTable .color-box{
+.colorTable .color-box {
   width: 1em;
   height: 1em;
   margin-right: 0.2em;
@@ -116,6 +116,33 @@ h3 {
     margin-top: 10px;
     width: 100%;
     left: 0;
+  }
+
+  .legend table,
+  .legend tbody {
+    display: block;
+  }
+
+  .legend tr {
+    display: inline-block;
+  }
+
+  .legend th,
+  .legend td {
+    display: inline;
+  }
+
+  .legend th {
+    margin-left: 10px;
+  }
+
+  .legend td {
+    margin-right: 10px;
+  }
+
+  .legend .color-box {
+    display: inline-block;
+    vertical-align: middle;
   }
 
   #covid-data.visible {
