@@ -3,10 +3,10 @@ const input = document.getElementById("country");
 const btn = document.getElementById("btn-country");
 const colors = [
   {code:'#007516', label:'very low'},
-  {code:'#0b5db3', label:'low'}, 
+  {code:'#0b5db3', label:'low'},
   {code:'#8c5340', label:'medium'},
   {code:'#ad05a7', label:'high'},
-  {code:'#a50000', label:'very high'} 
+  {code:'#a50000', label:'very high'}
 ]
 
 const getCountryColor = ({newInfections, population}) => {
@@ -69,9 +69,7 @@ function renderData(data) {
       <div class="legend">
         <table class="colorTable">
           <tbody>
-
-          ${displayLegendTableRows()}
-
+            ${displayLegendTableRows()}
           </tbody>
         </table>
       </div>
@@ -116,7 +114,8 @@ function renderData(data) {
       </div>
     `
     document.querySelector("#country-map").innerHTML = countryHtml;
-  }else {
+  }
+  else {
     const errorHtml = `
       <h1>Wrong country name</h1>
     `;
@@ -145,15 +144,12 @@ async function getTodaysCovidData(country) {
     }
   }
 
- 
-function displayLegendTableRows() {
-  
-return colors.map(color => ` 
-  <tr>
-    <th><div style="background: ${color.code};" class="color-box"></div></th>
-    <td>${color.label}</td>
-  </tr>
-`).join('');
 
-}  
-    
+function displayLegendTableRows() {
+  return colors.map(color => `
+    <tr>
+      <th><div style="background: ${color.code};" class="color-box"></div></th>
+      <td>${color.label}</td>
+    </tr>
+  `).join('');
+}
