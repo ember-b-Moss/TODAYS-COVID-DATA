@@ -1,122 +1,152 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Pacifico&display=swap");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-image: url("cov.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: "Open Sans";
-    min-height: 100vh;
-    text-align: center;
-  }
-  
-  input {
-    background: #f2f2f2;
-    border: 1px solid #e4e4e4;
-    border-radius: 5px;
-    color: #333;
-    font-size: 1em;
-    margin: 10px;
-    min-width: 200px;
-    padding: 10px;
-  }
-  
-  button {
-    background: #0160ad;
-    border: 1px solid #0160ad;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 1em;
-    padding: 10px;
-  }
-  
-  h1,h3 {
-    color: #333;
-    font-family: "Pacifico", cursive;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  h1 {
-    line-height: 100%;
-    margin-top: 10px;
-  }
+body {
+  background-image: url("cov.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Open Sans";
+  min-height: 100vh;
+  text-align: center;
+}
 
-  h3 {
-    margin-bottom: 10px;
-  }
+input {
+  background: #f2f2f2;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  color: #333;
+  font-size: 1em;
+  margin: 10px;
+  min-width: 200px;
+  padding: 10px;
+}
 
-  .dataTable {
-    margin-left: auto;
-    margin-right: auto;
-  }
+button {
+  background: #0160ad;
+  border: 1px solid #0160ad;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  padding: 10px;
+}
 
-  .dataTable th {
-    font-weight: normal;
-  }
+h1,h3 {
+  color: #333;
+  font-family: "Pacifico", cursive;
+}
 
-  .dataTable th, .dataTable td {
-    padding: 10px;
-  }
+h1 {
+  line-height: 100%;
+  margin-top: 10px;
+}
 
-  .dataTable td {
-    font-size: 1.25em;
-  }
-  
-  #covid-data.visible {
-    background: rgb(230, 232, 234, 80%);
-    border: 1px solid rgba(206, 217, 237, 0.4);
-    border-radius: 10px;
-    box-shadow: 1px 1px 12px rgba(206, 217, 237, 0.9);
-    margin: 20px auto;
-    padding: 10px;
-    width: 300px;
-  }
-  
-  .map {
-    height: 100%;
-  }
-  
-  .bold {
-    font-size: 1.2em;
-    font-weight: 600;
-  }
+h3 {
+  margin-bottom: 10px;
+}
+
+.dataTable {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dataTable th {
+  font-weight: normal;
+}
+
+.dataTable th, .dataTable td {
+  padding: 10px;
+}
+
+.dataTable td {
+  font-size: 1.25em;
+}
+
+#covid-data.visible {
+  background: rgb(230, 232, 234, 80%);
+  border: 1px solid rgba(206, 217, 237, 0.4);
+  border-radius: 10px;
+  box-shadow: 1px 1px 12px rgba(206, 217, 237, 0.9);
+  margin: 20px auto;
+  padding: 10px;
+  width: 300px;
+}
+
+.map {
+  height: 100%;
+}
+
+.bold {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.legend {
+  position: absolute;
+  transform: translateX(300px);
+  background: rgb(230, 232, 234, 80%);
+  border-radius: 10px;
+  box-shadow: 1px 1px 12px rgba(206, 217, 237, 0.9);
+  padding: 10px;
+}
+
+.colorTable .color-box {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+}
+
+.colorTable td {
+  text-align: left;
+}
+
+.colorTable {
+  font-size: 0.8em;
+}
+
+@media (max-width: 536px) {
   .legend {
-    position: absolute;
-    transform: translateX(300px);
-    background: rgb(230, 232, 234, 80%);
-    border-radius: 10px;
-    box-shadow: 1px 1px 12px rgba(206, 217, 237, 0.9);
-    padding: 10px;
-    }
-  
-  .colorTable .color-box{
-    width: 1em;
-    height: 1em;
-    margin-right: 0.2em;
-  }
-  .colorTable td {
-    text-align: left;
-  }
-  .colorTable {
-    font-size: 0.8em;
+    transform: none;
+    top: 100%;
+    margin-top: 10px;
+    width: 100%;
+    left: 0;
   }
 
-  @media (max-width: 536px) {
-    .legend {
-      transform: none;
-      top: 100%;
-      margin-top: 10px;
-      width: 100%;
-      left: 0;
-      }
-
-    #covid-data.visible {
-      position: relative;
-      margin-bottom: 140px;
-      }
+  .legend table,
+  .legend tbody {
+    display: block;
   }
+
+  .legend tr {
+    display: inline-block;
+  }
+
+  .legend th,
+  .legend td {
+    display: inline;
+  }
+
+  .legend th {
+    margin-left: 10px;
+  }
+
+  .legend td {
+    margin-right: 10px;
+  }
+
+  .legend .color-box {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  #covid-data.visible {
+    position: relative;
+    margin-bottom: 140px;
+  }
+}
